@@ -1,3 +1,10 @@
-const Filter = () => {}
+const Filter = () => {
+  return (
+    <div>
+      <p>Find contact by name</p>
+      <input type="text" />
+    </div>
+  );
+};
 
-export default Filter
+export default Filter;
