@@ -1,0 +1,12 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.submit_bttn {
+  width: 60px;
+  padding: 10px 5px;
+  border-radius: 8px;
+  margin: 0 auto;
+}

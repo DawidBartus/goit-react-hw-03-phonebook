@@ -1,44 +1,40 @@
-import { Component } from 'react';
+import React from 'react';
+import style from 'components/ContactList/ContactList.module.css';
+import PropTypes from 'prop-types';
 
-class ContactList extends Component {
-  state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
-    name: '',
-    number: '',
-  };
+const ContactList = props => {
+  const { contacts, onClick, filter } = props;
 
-  delateContact = e => {
-    const { contacts } = this.state;
-    const newContact = contacts.filter(contact => contact.id !== e.target.id);
-
-    this.setState({ contacts: newContact });
-  };
-
-  render() {
-    const contactList = this.state.contacts;
-    console.log(contactList);
-    return (
-      <>
-        {contactList.map(contact => {
+  return (
+    <ul className={style.list}>
+      {contacts
+        .filter(contact =>
+          contact.name.toLowerCase().includes(filter.toLowerCase())
+        )
+        .map(contact => {
           return (
-            <span key={contact.id}>
-              <p>
+            <li className={style.list_element} key={contact.id}>
+              <button
+                className={style.delete}
+                id={contact.id}
+                onClick={onClick}
+              >
+                Delete
+              </button>
+              <p className={style.contact_details}>
                 {contact.name} {contact.number}
               </p>
-              <button id={contact.id} onClick={this.delateContact}>
-                Delate
-              </button>
-            </span>
+            </li>
           );
         })}
-      </>
-    );
-  }
-}
+    </ul>
+  );
+};
+
+ContactList.propTypes = {
+  contacts: PropTypes.array,
+  filter: PropTypes.string,
+  onClick: PropTypes.func,
+};
 
 export default ContactList;

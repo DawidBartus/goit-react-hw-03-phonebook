@@ -15,7 +15,26 @@ class App extends Component {
     filter: '',
   };
 
-  updateContactList = props => {};
+  updateContactList = props => {
+    const { contacts } = this.state;
+
+    if (contacts.some(contact => contact.name === props.name)) {
+      alert(`${props.name} is in your contact list`);
+    } else {
+      contacts.push(props);
+      this.setState({ contacts: contacts });
+    }
+  };
+
+  deleteContact = e => {
+    const { contacts } = this.state;
+    const newContact = contacts.filter(contact => contact.id !== e.target.id);
+    this.setState({ contacts: newContact });
+  };
+
+  findContact = e => {
+    this.setState({ filter: e.target.value });
+  };
 
   render() {
     return (
@@ -24,8 +43,12 @@ class App extends Component {
         <ContactForm onSubmit={this.updateContactList} />
 
         <h2>Contacts</h2>
-        <Filter />
-        <ContactList />
+        <Filter onChange={this.findContact} />
+        <ContactList
+          contacts={this.state.contacts}
+          onClick={this.deleteContact}
+          filter={this.state.filter}
+        />
       </div>
     );
   }
