@@ -36,7 +36,6 @@ class ContactList extends Component {
             </span>
           );
         })}
-        <button>Cześć</button>
       </>
     );
   }

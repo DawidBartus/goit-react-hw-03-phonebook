@@ -1,27 +1,41 @@
-import React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid';
+
+const INITIAL_STATE = {
+  name: '',
+  number: '',
+};
 
 class ContactForm extends Component {
-  // state = {
-  //   contacts: [
-  //     {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
-  //     {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-  //     {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-  //     {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
-  //   ],
-  //   name: '',
-  //   number: ''
-  // }
+  state = { ...INITIAL_STATE };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const name = form.elements.name.value;
+    const number = form.elements.number.value;
+    const id = nanoid();
+
+    this.props.onSubmit({ id, name, number });
+    form.reset();
+  };
 
   render() {
     return (
-      <input
-        type="tel"
-        name="number"
-        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-        required
-      />
+      <form onSubmit={this.handleSubmit}>
+        <label htmlFor="contactName">Number:</label>
+        <input
+          id="contactName"
+          type="text"
+          name="name"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+        />
+        <label htmlFor="number">Name</label>
+        <input type="tel" id="number" name="number" pattern="[0-9]+" />
+        <button type="submit">Zapisz</button>
+      </form>
     );
   }
 }
