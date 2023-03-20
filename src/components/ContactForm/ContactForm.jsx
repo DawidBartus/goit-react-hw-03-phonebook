@@ -25,7 +25,7 @@ class ContactForm extends Component {
   render() {
     return (
       <form className={style.form} onSubmit={this.handleSubmit}>
-        <label htmlFor="contactName">Number:</label>
+        <label htmlFor="contactName">Name:</label>
         <input
           id="contactName"
           type="text"
@@ -34,7 +34,7 @@ class ContactForm extends Component {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
         />
-        <label htmlFor="number">Name</label>
+        <label htmlFor="number">Number:</label>
         <input
           type="tel"
           id="number"

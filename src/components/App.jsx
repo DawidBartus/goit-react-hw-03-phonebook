@@ -18,7 +18,11 @@ class App extends Component {
   updateContactList = props => {
     const { contacts } = this.state;
 
-    if (contacts.some(contact => contact.name === props.name)) {
+    if (
+      contacts.some(
+        contact => contact.name.toLowerCase() === props.name.toLowerCase()
+      )
+    ) {
       alert(`${props.name} is in your contact list`);
     } else {
       contacts.push(props);
