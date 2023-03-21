@@ -21,7 +21,7 @@ class App extends Component {
       ? this.setState({ contacts: parseLocalContacts })
       : localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
   }
-
+  // tojesttest
   componentDidUpdate() {
     const { contacts } = this.state;
     localStorage.setItem('contacts', JSON.stringify(contacts));
