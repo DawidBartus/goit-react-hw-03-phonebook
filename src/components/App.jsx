@@ -55,11 +55,22 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Phonebook</h1>
+      <div
+        style={{
+          backgroundColor: '#1C1C1C',
+          padding: '10px 10px',
+          margin: '10px 0',
+          width: '412px',
+          height: '915px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <h1 style={{ color: 'white' }}>Phonebook</h1>
         <ContactForm onSubmit={this.updateContactList} />
 
-        <h2>Contacts</h2>
+        <h2 style={{ color: 'white', margin: '10px' }}>Contacts</h2>
         <Filter onChange={this.findContact} />
         <ContactList
           contacts={this.state.contacts}

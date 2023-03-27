@@ -19,7 +19,7 @@ const ContactList = props => {
                 id={contact.id}
                 onClick={onClick}
               >
-                Delete
+                Del
               </button>
               <p className={style.contact_details}>
                 {contact.name} {contact.number}
